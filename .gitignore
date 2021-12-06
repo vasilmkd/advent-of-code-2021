@@ -1,0 +1,9 @@
+*.class
+*.log
+.bloop
+.bsp
+.metals
+metals.sbt
+target
+.DS_Store
+.vscode
