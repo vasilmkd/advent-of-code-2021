@@ -10,12 +10,13 @@ object Monoid:
     def empty: Int = 0
 
   given [K, V: Monoid]: Monoid[Map[K, V]] with
-    extension (x: Map[K, V]) def |+|(y: Map[K, V]): Map[K, V] =
-      val ks = x.keySet union y.keySet
-      ks.map { k =>
-        val xv = x.getOrElse(k, summon[Monoid[V]].empty)
-        val yv = y.getOrElse(k, summon[Monoid[V]].empty)
-        k -> (xv |+| yv)
-      }.toMap
+    extension (x: Map[K, V])
+      def |+|(y: Map[K, V]): Map[K, V] =
+        val ks = x.keySet union y.keySet
+        ks.map { k =>
+          val xv = x.getOrElse(k, summon[Monoid[V]].empty)
+          val yv = y.getOrElse(k, summon[Monoid[V]].empty)
+          k -> (xv |+| yv)
+        }.toMap
 
     def empty: Map[K, V] = Map.empty

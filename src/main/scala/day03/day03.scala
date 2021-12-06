@@ -18,7 +18,7 @@ enum Bit:
 
   def toInt: Int = this match
     case Zero => 0
-    case One => 1
+    case One  => 1
 
 object Bit:
   def fromChar(c: Char): Bit = c match
@@ -29,11 +29,12 @@ type Count = Map[Bit, Int]
 
 object Count:
   def fromBit(b: Bit): Count = Map(b -> 1)
-  
+
 opaque type BitString = Vector[Bit]
 
-extension (bs: BitString) def hasBitAt(b: Bit)(i: Int): Boolean =
-  bs(i) == b
+extension (bs: BitString)
+  def hasBitAt(b: Bit)(i: Int): Boolean =
+    bs(i) == b
 
 def combineRows[A: Monoid](r1: Vector[A], r2: Vector[A]): Vector[A] =
   (r1 zip r2).map(_ |+| _)

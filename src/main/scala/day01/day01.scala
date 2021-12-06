@@ -9,8 +9,8 @@ def stream(): LazyList[Int] =
 
 def countPairwiseIncreases(l: LazyList[Int]): Int =
   l.sliding(2)
-    .collect {
-      case Seq(d1, d2) => if d2 > d1 then 1 else 0
+    .collect { case Seq(d1, d2) =>
+      if d2 > d1 then 1 else 0
     }
     .sum
 
