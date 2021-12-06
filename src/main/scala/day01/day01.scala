@@ -1,13 +1,11 @@
 package day01
 
+import syntax._
+
 import scala.io.Source
 
 def stream(): LazyList[Int] =
   Source.fromResource("day01.txt").getLines().map(_.toInt).to(LazyList)
-
-extension [A](l: LazyList[A])
-  def |>[B](f: LazyList[A] => B): B =
-    f(l)
 
 def countPairwiseIncreases(l: LazyList[Int]): Int =
   l.sliding(2)
