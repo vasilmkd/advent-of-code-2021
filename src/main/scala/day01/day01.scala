@@ -6,7 +6,7 @@ def stream(): LazyList[Int] =
   Source.fromResource("day01.txt").getLines().map(_.toInt).to(LazyList)
 
 extension [A](l: LazyList[A])
-  def through[B](f: LazyList[A] => B): B =
+  def |>[B](f: LazyList[A] => B): B =
     f(l)
 
 def countPairwiseIncreases(l: LazyList[Int]): Int =
@@ -21,10 +21,10 @@ def sumTriples(l: LazyList[Int]): LazyList[Int] =
 
 @main
 def part1(): Unit =
-  val res = stream().through(countPairwiseIncreases)
+  val res = stream() |> countPairwiseIncreases
   println(res)
 
 @main
 def part2(): Unit =
-  val res = stream().through(sumTriples).through(countPairwiseIncreases)
+  val res = stream() |> sumTriples |> countPairwiseIncreases
   println(res)
