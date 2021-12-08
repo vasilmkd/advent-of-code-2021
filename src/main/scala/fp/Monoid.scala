@@ -5,9 +5,9 @@ trait Monoid[A]:
   def empty: A
 
 object Monoid:
-  given Monoid[Int] with
-    extension (x: Int) def |+|(y: Int): Int = x + y
-    def empty: Int = 0
+  given [N: Numeric]: Monoid[N] with
+    extension (x: N) def |+|(y: N): N = Numeric[N].plus(x, y)
+    def empty: N = Numeric[N].zero
 
   given [K, V: Monoid]: Monoid[Map[K, V]] with
     extension (x: Map[K, V])

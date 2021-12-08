@@ -1,6 +1,6 @@
 package day04
 
-import syntax._
+import syntax.*
 
 import scala.annotation.tailrec
 import scala.collection.mutable
