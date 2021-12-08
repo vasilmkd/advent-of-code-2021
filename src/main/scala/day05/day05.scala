@@ -20,9 +20,11 @@ object Line:
   def parse(s: String): Line =
     s.split(" -> ") match
       case Array(first, second) =>
-        val Vector(start, end) = Vector(Point.parse(first), Point.parse(second)).sortBy(p => 1000 * p.x + p.y)
+        val Vector(start, end) =
+          Vector(Point.parse(first), Point.parse(second)).sortBy(p =>
+            1000 * p.x + p.y
+          )
         Line(start, end)
-        
 
 def stream(): LazyList[Line] =
   Source
@@ -38,8 +40,7 @@ def part1(): Unit =
     for
       x <- line.start.x to line.end.x
       y <- line.start.y to line.end.y
-    do
-      board(y)(x) += 1
+    do board(y)(x) += 1
   }
 
   val result = board.map(_.count(_ >= 2)).sum
@@ -53,8 +54,7 @@ def part2(): Unit =
       for
         x <- line.start.x to line.end.x
         y <- line.start.y to line.end.y
-      do
-        board(y)(x) += 1
+      do board(y)(x) += 1
     else
       var y = line.start.y
       val offset = if line.start.y < line.end.y then 1 else -1
